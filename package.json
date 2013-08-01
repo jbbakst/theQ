@@ -1,20 +1,23 @@
 {
   "name": "ember-test",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ajgrover/e-test.git"
+  }
   "dependencies": {
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",
-    "grunt-contrib-connect": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-jasmine": "*",
     "grunt-contrib-less": "*",
-    "grunt-contrib-livereload": "*",
     "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
     "grunt-ember-templates": "~0.4.9",
-    "grunt-open": "*",
-    "grunt-regarde": "*"
+    "grunt-express": "~1.0.0-beta2",
+    "grunt-open": "*"
   },
   "engines": {
     "node": "0.10.x",

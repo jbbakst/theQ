@@ -1,10 +1,5 @@
 'use strict'
 
-mountFolder = (connect, dir)->
-  connect.static require('path').resolve dir 
-
-lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet
-
 module.exports = (grunt)->
 
   grunt.initConfig
@@ -13,10 +8,7 @@ module.exports = (grunt)->
       dist: 
         files: [
           dot: true,
-          src: [
-            'dist',
-            'dist/*'
-          ]
+          src: 'dist'
         ]
 
     emberTemplates: 
@@ -40,56 +32,68 @@ module.exports = (grunt)->
     less:
       dist:
         options:
-          paths: ['app/styles']
+          paths: 'app/styles'
         files:
           'dist/styles/main.css': 'app/styles/main.less'
+
+    copy: 
+      images: 
+        files: [
+          expand: true,
+          dot: true,
+          cwd: 'app',
+          src: 'images/**/*',
+          dest: 'dist'
+        ]
+      # components: 
+      #   files: [
+      #     expand: true,
+      #     dot: true,
+      #     cwd: 'app',
+      #     src: 'bower_components/**/*',
+      #     dest: 'dist'
+      #   ]
 
     # uglify: 
     #   dist:
     #     files: []?
     #       'file.min.js': 'file.js'
       
-    connect: 
+    express: 
       options:
         port: 5000
         hostname: 'localhost'
       livereload:
         options:
-          middleware: (connect)->
-            [
-              lrSnippet,
-              mountFolder(connect, 'dist'),
-              mountFolder(connect, 'app')
-            ]
-      test: 
-        options: 
-          middleware: (connect)->
-            [
-              mountFolder(connect, 'dist'),
-              mountFolder(connect, 'test')
-            ]
-      dist: 
-        options: 
-          middleware: (connect)->
-            [mountFolder connect, 'dist']
+          bases: ['app', 'dist']
+          livereload: true
+      test:
+        options:
+          bases: ['test', 'dist']
+      dist:
+        options:
+          bases: ['app', 'dist']
 
     open: 
       server: 
         path: 'http://localhost:5000'
 
-    watch: 
+    watch:
       emberTemplates:
         files: 'app/templates/**/*.handlebars'
-        tasks: ['emberTemplates']
+        tasks: 'emberTemplates'
       coffee:
-        files: ['app/scripts/**/*.coffee']
-        tasks: ['coffee:dist']
+        files: 'app/scripts/**/*.coffee'
+        tasks: 'coffee:dist'
       coffeeTest:
-        files: ['test/spec/**/*.coffee']
-        tasks: ['coffee:test']
-      livereload:
-        files: ['app/*.html', 'dist/**/*']
-        tasks: ['livereload']
+        files: 'test/spec/**/*.coffee'
+        tasks: 'coffee:test'
+      less:
+        files: 'app/styles/*.less'
+        tasks: 'less:dist'
+      images:
+        files: 'app/images/**/*'
+        tasks: 'copy'
 
     jasmine: 
       unit: 
@@ -102,45 +106,25 @@ module.exports = (grunt)->
             'dist/bower_components/ember/ember.js'
           ]
 
-    copy: 
-      images: 
-        files: [
-          expand: true,
-          dot: true,
-          cwd: 'app',
-          src: 'images/**/*',
-          dest: 'dist'
-        ]
-      components: 
-        files: [
-          expand: true,
-          dot: true,
-          cwd: 'app',
-          src: 'bower_components/**/*',
-          dest: 'dist',
-        ]
-
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-concat'
-  grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-less'
-  grunt.loadNpmTasks 'grunt-contrib-livereload'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-ember-templates'
+  grunt.loadNpmTasks 'grunt-express'
   grunt.loadNpmTasks 'grunt-open'
-  grunt.loadNpmTasks 'grunt-regarde'  
-
-  grunt.renameTask 'regarde', 'watch' 
 
   grunt.registerTask 'build', [
     'clean',
     'emberTemplates',
     'coffee:dist',
     'less:dist',
-    'uglify',
+    # 'uglify',
+    # minify html, css, images
     'copy'
   ]
 
@@ -148,8 +132,7 @@ module.exports = (grunt)->
     'clean',
     'emberTemplates',
     'coffee:test',
-    'copy:components',
-    'connect:test',
+    'express:test',
     'jasmine'
   ]
 
@@ -159,16 +142,17 @@ module.exports = (grunt)->
     'coffee:dist',
     'less:dist',
     'copy',
-    'livereload-start',
-    'connect:livereload',
+    'express:livereload',
     'open',
     'watch'
   ]
 
+  # Remember to use minified bower components for distribution!
   grunt.registerTask 'server:dist', [
     'build',
     'open',
-    'connect:dist:keepalive'
+    'express:dist',
+    'express-keepalive'
   ]
 
-  grunt.registerTask 'default', ['build']
+  grunt.registerTask 'default', 'build'
