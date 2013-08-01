@@ -1,0 +1,10 @@
+{
+  "name": "ember-test",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#~3.0.0-rc1",
+    "jquery": "~2.0.3",
+    "bootstrap-compiled": "http://getbootstrap.com/bs-v3.0.0-rc1-dist.zip",
+    "ember": "~1.0.0-rc.6"
+  }
+}
