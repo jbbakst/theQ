@@ -34,7 +34,7 @@ module.exports = (grunt)->
         options:
           paths: 'app/styles'
         files:
-          'dist/styles/main.css': 'app/styles/main.less'
+          'dist/styles/app.css': 'app/styles/app.less'
 
     copy: 
       images: 
@@ -45,11 +45,29 @@ module.exports = (grunt)->
           src: 'images/**/*',
           dest: 'dist'
         ]
+      index:
+        files: [
+          expand: true,
+          cwd: 'app',
+          src: 'index.html',
+          dest: 'dist'
+        ]
+      components:
+        files: [
+          expand: true,
+          dot: true,
+          cwd: 'app',
+          src: 'bower_components/**/*',
+          dest: 'dist'
+        ]
 
     uglify: 
       dist:
-        files: 
-          'dist/scripts/app.min.js': 'dist/scripts/app.js'
+        files: 'dist/scripts/app.min.js': 'dist/scripts/app.js'
+
+    cssmin:
+      dist:
+        files: 'dist/styles/app.min.css': 'dist/styles/app.css'
       
     express: 
       options:
@@ -65,7 +83,7 @@ module.exports = (grunt)->
           livereload: false
       dist:
         options:
-          bases: ['app', 'dist']
+          bases: ['dist']
           livereload: false
 
     open: 
@@ -79,15 +97,12 @@ module.exports = (grunt)->
       coffee:
         files: 'app/scripts/**/*.coffee'
         tasks: 'coffee:dist'
-      coffeeTest:
-        files: 'test/spec/**/*.coffee'
-        tasks: 'coffee:test'
       less:
         files: 'app/styles/*.less'
         tasks: 'less:dist'
       images:
         files: 'app/images/**/*'
-        tasks: 'copy'
+        tasks: 'copy:images'
 
     jasmine: 
       unit: 
@@ -104,6 +119,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -118,14 +134,15 @@ module.exports = (grunt)->
     'coffee:dist',
     'less:dist',
     'uglify',
-    # minify html, css, images
+    'cssmin',
     'copy'
   ]
 
   grunt.registerTask 'test', [
     'clean',
     'emberTemplates',
-    'coffee:test',
+    'coffee',
+    'copy:components'
     'express:test',
     'jasmine'
   ]
@@ -135,14 +152,14 @@ module.exports = (grunt)->
     'emberTemplates',
     'coffee:dist',
     'less:dist',
-    'copy',
+    'copy:images',
     'express:livereload',
     'open',
     'watch'
   ]
 
   # Remember to use minified bower components for distribution!
-  grunt.registerTask 'server:dist', [
+  grunt.registerTask 'dist', [
     'build',
     'open',
     'express:dist',

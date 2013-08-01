@@ -11,6 +11,7 @@
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
+    "grunt-contrib-cssmin": "*",
     "grunt-contrib-jasmine": "*",
     "grunt-contrib-less": "*",
     "grunt-contrib-uglify": "*",
