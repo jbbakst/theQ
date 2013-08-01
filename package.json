@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ajgrover/e-test.git"
-  }
+    "url": "http://github.com/ajgrover/ember-test.git"
+  },
   "dependencies": {
     "grunt": "*",
     "grunt-contrib-clean": "*",

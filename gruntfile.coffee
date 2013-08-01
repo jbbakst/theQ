@@ -45,19 +45,11 @@ module.exports = (grunt)->
           src: 'images/**/*',
           dest: 'dist'
         ]
-      # components: 
-      #   files: [
-      #     expand: true,
-      #     dot: true,
-      #     cwd: 'app',
-      #     src: 'bower_components/**/*',
-      #     dest: 'dist'
-      #   ]
 
-    # uglify: 
-    #   dist:
-    #     files: []?
-    #       'file.min.js': 'file.js'
+    uglify: 
+      dist:
+        files: 
+          'dist/scripts/app.min.js': 'dist/scripts/app.js'
       
     express: 
       options:
@@ -70,9 +62,11 @@ module.exports = (grunt)->
       test:
         options:
           bases: ['test', 'dist']
+          livereload: false
       dist:
         options:
           bases: ['app', 'dist']
+          livereload: false
 
     open: 
       server: 
@@ -123,7 +117,7 @@ module.exports = (grunt)->
     'emberTemplates',
     'coffee:dist',
     'less:dist',
-    # 'uglify',
+    'uglify',
     # minify html, css, images
     'copy'
   ]
