@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "grunt": "*",
+    "grunt-coffeelint": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",

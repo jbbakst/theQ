@@ -1,5 +1,5 @@
 App = window.App = Ember.Application.create
-	rootElement: $('#app')
+  rootElement: $('#app')
 
 # Order and include as you please.
 # require('scripts/routes/*')
@@ -8,8 +8,8 @@ App = window.App = Ember.Application.create
 # require('scripts/views/*')
 
 App.Router.map ->
-	this.route 'about'
-	this.route 'contact'
+  this.route 'about'
+  this.route 'contact'
 
 # App.Store = DS.Store.extend {
 # }

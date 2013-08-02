@@ -19,10 +19,13 @@ module.exports = (grunt)->
         files: 
           'dist/scripts/compiled-templates.js': 'app/templates/**/*.handlebars'
 
+    coffeelint:
+      dist: 'app/scripts/**/*.coffee'
+      test: 'test/spec/**/*.coffee'
+
     coffee: 
       dist: 
-        files: 
-          'dist/scripts/app.js': 'app/scripts/**/*.coffee'
+        files: 'dist/scripts/app.js': 'app/scripts/**/*.coffee'
       test: 
         options:
           join: true
@@ -115,6 +118,7 @@ module.exports = (grunt)->
             'dist/bower_components/ember/ember.js'
           ]
 
+  grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-concat'
@@ -140,8 +144,9 @@ module.exports = (grunt)->
 
   grunt.registerTask 'test', [
     'clean',
-    'emberTemplates',
+    'coffeelint:test',
     'coffee',
+    'emberTemplates',
     'copy:components'
     'express:test',
     'jasmine'
@@ -149,8 +154,9 @@ module.exports = (grunt)->
 
   grunt.registerTask 'server', [
     'clean',
-    'emberTemplates',
+    'coffeelint:dist',
     'coffee:dist',
+    'emberTemplates',
     'less:dist',
     'copy:images',
     'express:livereload',
