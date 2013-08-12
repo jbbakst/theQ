@@ -9,6 +9,8 @@ App = window.App = Ember.Application.create
 
 App.Router.map ->
   this.route 'login'
+  this.route 'register'
+  this.route 'forgot'
 
 # App.Store = DS.Store.extend {
 # }

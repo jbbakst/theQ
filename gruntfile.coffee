@@ -66,7 +66,10 @@ module.exports = (grunt)->
 
     uglify: 
       dist:
-        files: 'dist/scripts/app.min.js': 'dist/scripts/app.js'
+        files: [
+          'dist/scripts/app.min.js': 'dist/scripts/app.js',
+          'dist/scripts/compiled-templates.min.js': 'dist/scripts/compiled-templates.js'
+        ]
 
     cssmin:
       dist:

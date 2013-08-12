@@ -1,4 +1,8 @@
-{{render "navbar"}}
+{{#unless loggedIn}}
+	{{render "navbar"}}
+{{else}}
+	{{render "insidenav"}}
+{{/unless}}
 <div class="container">
   {{outlet}}
 </div>
