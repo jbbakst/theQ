@@ -1,11 +1,8 @@
 .DS_Store
-
-logs
-results
+.idea
 
 npm-debug.log
 node_modules
 app/bower_components
-.idea
 dist
 test/bower_components

@@ -1,9 +1,9 @@
 {
-  "name": "ember-test",
+  "name": "ember-seed",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ajgrover/ember-test.git"
+    "url": "http://github.com/ajgrover/ember-seed.git"
   },
   "dependencies": {
     "grunt": "*",

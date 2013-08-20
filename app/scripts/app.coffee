@@ -1,5 +1,6 @@
 App = window.App = Ember.Application.create
   rootElement: $('#app')
+  LOG_TRANSITIONS: true
 
 # Order and include as you please.
 # require('scripts/routes/*')
