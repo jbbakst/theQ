@@ -1,3 +1,3 @@
-Ember-seed
+Ember-Seed
 ==========
-A seed project set up with Grunt, coffeescript, and ember.
+A seed project set up with Grunt, CoffeeScript, and EmberJS.

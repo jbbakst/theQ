@@ -60,7 +60,7 @@ module.exports = (grunt)->
           expand: true,
           dot: true,
           cwd: 'app',
-          src: 'bower_components/**/*',
+          src: 'components/**/*',
           dest: 'dist'
         ]
 
@@ -116,9 +116,9 @@ module.exports = (grunt)->
         options: 
           specs: 'dist/spec/test.js'
           vendor: [
-            'dist/bower_components/jquery/jquery.js',
-            'dist/bower_components/handlebars/handlebars.runtime.js',
-            'dist/bower_components/ember/ember.js'
+            'dist/components/jquery/jquery.js',
+            'dist/components/handlebars/handlebars.runtime.js',
+            'dist/components/ember/ember.js'
           ]
 
   grunt.loadNpmTasks 'grunt-coffeelint'
