@@ -57,7 +57,7 @@ module.exports = (grunt)->
       
     express: 
       options:
-        port: 5000
+        port: 8080
         hostname: 'localhost'
       livereload:
         options:
@@ -66,7 +66,7 @@ module.exports = (grunt)->
 
     open: 
       server: 
-        path: 'http://localhost:5000'
+        path: 'http://localhost:8080'
 
     watch:
       emberTemplates:
@@ -105,4 +105,14 @@ module.exports = (grunt)->
     'watch'
   ]
 
-  grunt.registerTask 'default', 'build'
+  grunt.registerTask 'dist', [
+    'clean',
+    'coffee:dist',
+    'emberTemplates',
+    'less:dist',
+    'copy',
+    'express:livereload',
+    'express-keepalive'
+  ]
+
+  grunt.registerTask 'default', 'server'
