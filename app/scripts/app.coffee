@@ -1,15 +1,14 @@
-App = window.App = Ember.Application.create
-  rootElement: $('#app')
+window.App = Ember.Application.create
   LOG_TRANSITIONS: true
+
+App.Router.map ->
+  this.route 'home'
 
 # Order and include as you please.
 # require('scripts/routes/*')
 # require('scripts/controllers/*')
 # require('scripts/models/*')
 # require('scripts/views/*')
-
-# App.Router.map ->
-  # this.route 'login'
 
 # App.Store = DS.Store.extend {
 # }
