@@ -1,24 +1,20 @@
 {
-  "name": "ember-seed",
+  "name": "hirestanford",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ajgrover/ember-seed.git"
+    "url": "http://github.com/ajgrover/HireStanford.git"
   },
   "dependencies": {
     "grunt": "*",
-    "grunt-coffeelint": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-cssmin": "*",
-    "grunt-contrib-jasmine": "*",
     "grunt-contrib-less": "*",
-    "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-ember-templates": "*",
-    "grunt-express": "~1.0.0-beta2",
+    "grunt-express": "*",
     "grunt-open": "*"
   },
   "engines": {

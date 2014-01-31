@@ -8,10 +8,8 @@ App = window.App = Ember.Application.create
 # require('scripts/models/*')
 # require('scripts/views/*')
 
-App.Router.map ->
-  this.route 'login'
-  this.route 'register'
-  this.route 'forgot'
+# App.Router.map ->
+  # this.route 'login'
 
 # App.Store = DS.Store.extend {
 # }
