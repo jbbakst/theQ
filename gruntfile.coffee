@@ -63,6 +63,10 @@ module.exports = (grunt)->
         options:
           bases: ['dist']
           livereload: true
+      dist:
+        options:
+          bases: ['dist']
+          livereload: false
 
     open: 
       server: 
@@ -111,7 +115,7 @@ module.exports = (grunt)->
     'emberTemplates',
     'less:dist',
     'copy',
-    'express:livereload',
+    'express:dist',
     'express-keepalive'
   ]
 
