@@ -2,7 +2,8 @@ window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
 App.Router.map ->
-  this.route 'home'
+  this.route 'profile'
+  this.route 'applications'
 
 # Order and include as you please.
 # require('scripts/routes/*')
