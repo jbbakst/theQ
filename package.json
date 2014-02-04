@@ -22,6 +22,6 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "postinstall": "./node_modules/grunt/lib/grunt.js dist"
+    "postinstall": "./node_modules/grunt/lib/grunt/cli.js dist"
   }
 }
