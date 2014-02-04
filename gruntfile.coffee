@@ -57,7 +57,7 @@ module.exports = (grunt)->
       
     express: 
       options:
-        port: 8080
+        port: 5000
         hostname: 'localhost'
       livereload:
         options:
@@ -70,7 +70,7 @@ module.exports = (grunt)->
 
     open: 
       server: 
-        path: 'http://localhost:8080'
+        path: 'http://localhost:5000'
 
     watch:
       emberTemplates:
