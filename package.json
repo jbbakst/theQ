@@ -1,9 +1,9 @@
 {
-  "name": "hirestanford",
+  "name": "theQ",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ajgrover/HireStanford.git"
+    "url": "http://github.com/ajgrover/theQ.git"
   },
   "dependencies": {
     "grunt": "*",
@@ -15,7 +15,8 @@
     "grunt-contrib-watch": "*",
     "grunt-ember-templates": "*",
     "grunt-express": "*",
-    "grunt-open": "*"
+    "grunt-open": "*",
+    "express": "~3.4.8"
   },
   "engines": {
     "node": "0.10.x",
