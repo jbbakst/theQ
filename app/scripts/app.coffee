@@ -2,8 +2,9 @@ window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
 App.Router.map ->
-  this.route 'profile'
-  this.route 'applications'
+  this.route 'queue'
+  this.route 'parties'
+  this.route 'party'
 
 # Order and include as you please.
 # require('scripts/routes/*')
