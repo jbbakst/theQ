@@ -1,14 +1,7 @@
 <div class="parties">
-    <div class="party">
-        {{#link-to "party"}}Party 1{{/link-to}}
-    </div>
-    <div class="party">
-        {{#link-to "party"}}Party 2{{/link-to}}
-    </div>
-    <div class="party">
-        {{#link-to "party"}}Party 3{{/link-to}}
-    </div>
-    <div class="party">
-        {{#link-to "party"}}Party 4{{/link-to}}
-    </div>
+
+    {{#each model}}
+        {{#link-to 'party' this}}<div class="party">{{name}}</div>{{/link-to}}
+    {{/each}}
+
 </div>
