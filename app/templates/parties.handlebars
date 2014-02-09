@@ -1,7 +1,20 @@
 <div class="parties">
-
+    <div class="nearest">
+        <div class="container">
+            <h3>Nearest Parties:</h3>
+        </div>
+    </div>
     {{#each model}}
-        {{#link-to 'party' this}}<div class="party">{{name}}</div>{{/link-to}}
+        <div class="party">
+            {{#link-to 'party' this}}
+                <div class="container">
+                    <h3>{{name}}</h3>
+                    <div class="info pull-right clearfix">
+                        <div class="numPeople">Number of partiers: <span class="number">{{numPeople}}</span></div>
+                        <div class="numSongs">Number of songs in Q: <span class="number">{{numSongs}}</span></div>
+                    </div>
+                </div>
+            {{/link-to}}
+        </div>
     {{/each}}
-
 </div>

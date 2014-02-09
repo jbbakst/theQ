@@ -54,6 +54,13 @@ module.exports = (grunt)->
           src: 'bower_components/**/*',
           dest: 'dist'
         ]
+      parties:
+        files: [
+          expand: true,
+          cwd: 'app',
+          src: 'scripts/parties.js',
+          dest: 'dist'
+        ]
       
     express: 
       options:
