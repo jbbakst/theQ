@@ -31,12 +31,12 @@ module.exports = (grunt)->
           'dist/styles/app.css': 'app/styles/app.less'
 
     copy: 
-      images: 
+      public:
         files: [
           expand: true,
           dot: true,
           cwd: 'app',
-          src: 'images/**/*',
+          src: 'public/**/*',
           dest: 'dist'
         ]
       index:
@@ -90,8 +90,8 @@ module.exports = (grunt)->
         files: 'app/styles/*.less'
         tasks: 'less:dist'
       images:
-        files: 'app/images/**/*'
-        tasks: 'copy:images'
+        files: 'app/public/**/*'
+        tasks: 'copy:public'
       index:
         files: 'app/index.html'
         tasks: 'copy:index'
