@@ -8,11 +8,17 @@
         {{#each model}}
             <li id="{{partyIndex}}">
                 {{#link-to 'party' this class="party"}}
-                    <h3>{{name}}</h3>
-                    <div class="info pull-right clearfix">
-                        <div class="numPeople">Number of partiers: <span class="number">{{numPeople}}</span></div>
-                        <div class="numSongs">Number of songs in Q: <span class="number">{{numSongs}}</span></div>
-                    </div>
+                    <h3 class="pull-left">{{name}}</h3>
+                    <table class="info pull-right">
+                        <tr>
+                            <td class="title">Number of partiers:</td>
+                            <td class="number">{{numPeople}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">Number of songs in Q:</td>
+                            <td class="number">{{numSongs}}</td>
+                        </tr>
+                    </table>
                 {{/link-to}}
             </li>
         {{/each}}

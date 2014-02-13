@@ -52,73 +52,73 @@ parties = [
     "currSongID": "kh6k6g"
   },
   {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
     "id": 3,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 4,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 5,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 6,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 7,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 8,
+    "name": "Sigma Alpha Epsilon",
+    "location": {
+      "x": 124.5875,
+      "y": 825.9827
+    },
+    "numPeople": 13,
+    "numSongs": 4,
+    "currSongID": "kh6k6g"
+  },
+  {
+    "id": 9,
     "name": "Theta Delta Chi",
     "location": {
       "x": 121.5875,
