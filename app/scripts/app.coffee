@@ -17,6 +17,9 @@ App.ApplicationController = Ember.Controller.extend
   back: ->
     window.history.back()
 
+Handlebars.registerHelper 'partyIndex', (options)->
+  index = options.data.view.contentIndex
+  return 'party' + index
 
 
 
@@ -36,105 +39,6 @@ parties = [
     "numPeople": 325,
     "numSongs": 56,
     "currSongID": "kjh4h4"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
-  },
-  {
-    "id": 2,
-    "name": "Sigma Alpha Epsilon",
-    "location": {
-      "x": 124.5875,
-      "y": 825.9827
-    },
-    "numPeople": 13,
-    "numSongs": 4,
-    "currSongID": "kh6k6g"
   },
   {
     "id": 2,

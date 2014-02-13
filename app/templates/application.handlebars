@@ -1,15 +1,11 @@
 <nav class="header" role="navigation">
-    <div class="back" {{action 'back'}}>
+    <div class="back pull-left" {{action 'back'}}>
         <span class="glyphicon glyphicon-chevron-left"></span>
     </div>
 
-    <div class="logo">
-        {{#link-to 'parties'}}
-            <div class="theQ">THE Q</div>
-        {{/link-to}}
-    </div>
+    THE Q
 
-    <div class="new">
+    <div class="new pull-right">
         {{#link-to 'new'}}
             <span class="glyphicon glyphicon-plus"></span>
         {{/link-to}}
