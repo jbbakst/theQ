@@ -26,6 +26,9 @@ nav.header {
       color: @font-purple;
       font-size: 24px;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
   .new {
     margin-right: 15px;
@@ -38,10 +41,6 @@ nav.header {
 }
 
 .parties {
-//  .nearest {
-//    width: 100%;
-//    height: @navbar-height;
-//  }
   .party-list {
     list-style: none;
     margin-left: 0;
@@ -52,14 +51,16 @@ nav.header {
         color: @midnight-blue;
         height: @navbar-height;
         display: block;
+        width: 100%;
         &:hover {
           text-decoration: none;
           color: @midnight-blue;
         }
-        h3 {
+        h4 {
           margin: 0 0 0 20px;
           line-height: @navbar-height;
-          text-overflow: ellipsis;
+          display: inline;
+//          text-overflow: ellipsis;
 //          white-space: nowrap;
 //          overflow: hidden;
         }
@@ -67,6 +68,10 @@ nav.header {
           text-align: right;
           margin: auto 20px auto 0;
           height: @navbar-height;
+//          display: inline-block;
+//          white-space: nowrap;
+//          position: absolute;
+//          right: 0;
           .number {
             padding-left: 20px;
           }

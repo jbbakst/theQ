@@ -7,15 +7,15 @@
     <ul class="party-list">
         {{#each model}}
             <li id="{{partyIndex}}">
-                {{#link-to 'party' this class="party"}}
-                    <h3 class="pull-left">{{name}}</h3>
+                {{#link-to 'party' this class="party pull-left"}}
+                    <h4>{{name}}</h4>
                     <table class="info pull-right">
                         <tr>
-                            <td class="title">Number of partiers:</td>
+                            <td class="title">Partiers:</td>
                             <td class="number">{{numPeople}}</td>
                         </tr>
                         <tr>
-                            <td class="title">Number of songs in Q:</td>
+                            <td class="title">Songs in Q:</td>
                             <td class="number">{{numSongs}}</td>
                         </tr>
                     </table>

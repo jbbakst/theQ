@@ -31,7 +31,7 @@ Handlebars.registerHelper 'partyIndex', (options)->
 parties = [
   {
     "id": 1,
-    "name": "Kappa Sigma",
+    "name": "Kappa Sig",
     "location": {
       "x": 123.5875,
       "y": 826.9827
@@ -42,7 +42,7 @@ parties = [
   },
   {
     "id": 2,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -53,7 +53,7 @@ parties = [
   },
   {
     "id": 3,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -64,7 +64,7 @@ parties = [
   },
   {
     "id": 4,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -75,7 +75,7 @@ parties = [
   },
   {
     "id": 5,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -86,7 +86,7 @@ parties = [
   },
   {
     "id": 6,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -97,7 +97,7 @@ parties = [
   },
   {
     "id": 7,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -108,7 +108,7 @@ parties = [
   },
   {
     "id": 8,
-    "name": "Sigma Alpha Epsilon",
+    "name": "SAE",
     "location": {
       "x": 124.5875,
       "y": 825.9827
@@ -119,7 +119,7 @@ parties = [
   },
   {
     "id": 9,
-    "name": "Theta Delta Chi",
+    "name": "Theta Delt",
     "location": {
       "x": 121.5875,
       "y": 824.9827
