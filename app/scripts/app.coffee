@@ -1,21 +1,29 @@
 App = Ember.Application.create {}
 
 App.Router.map ->
-  this.resource 'parties'
+  this.resource 'parties', { path: '/'}
   this.resource 'party', { path: 'party/:party_id' }
   this.resource 'new'
-
-App.PartiesRoute = Ember.Route.extend
-  model: ->
-    parties
 
 App.PartyRoute = Ember.Route.extend
   model: (params)->
     parties.findBy 'id', params.party_id
 
+App.PartiesRoute = Ember.Route.extend
+  model: ->
+    parties
+
 App.ApplicationController = Ember.Controller.extend
   back: ->
     window.history.back()
+
+
+
+
+
+
+
+
 
 parties = [
   {
