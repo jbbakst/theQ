@@ -1,73 +1,73 @@
-songs = [
+[
     {
       "id": 1,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 2,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 3,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 4,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 5,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 6,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 7,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 8,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     },
     {
       "id": 9,
       "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
+      "artist": "Pitbull",
+      "album": "Meltdown",
       "score": 55,
       "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
     }
