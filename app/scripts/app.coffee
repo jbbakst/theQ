@@ -119,14 +119,52 @@ App.PartyController = Ember.Controller.extend
       this.set 'controllers.application.party', party
       this.transitionToRoute '/queue'
 
+    leaveParty: ->
+      this.set 'controllers.application.party', undefined
+      this.transitionToRoute '/'
+
 App.QueueController = Ember.Controller.extend
   needs: ['application']
 
 App.NewPartyController = Ember.Controller.extend
   needs: ['application']
 
+  creating: false
+  error: false
+
+  actions:
+    create: ->
+      this.set 'error', false
+      this.set 'creating', true
+
+      $.post('/addParty',
+        name: this.get('name')
+      ).then =>
+        this.set('creating', false)
+        this.transitionToRoute '/home'
+      , =>
+        this.set('creating', false)
+        this.set('error', true)
+
 App.NewSongController = Ember.Controller.extend
   needs: ['application']
+
+  adding: false
+  error: false
+
+  actions:
+    create: ->
+      this.set 'error', false
+      this.set 'adding', true
+
+      $.post('/addSong',
+        name: this.get('name')
+      ).then =>
+        this.set('adding', false)
+        this.transitionToRoute '/home'
+      , =>
+        this.set('adding', false)
+        this.set('error', true)
 
 App.NowPlayingController = Ember.Controller.extend
   needs: ['application']

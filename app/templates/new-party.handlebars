@@ -1,0 +1,13 @@
+<div class="new-party">
+    <div class="alert alert-info header">Create a party.</div>
+    {{#if error}}
+        <div class="alert alert-danger">Error creating party. Please try again.</div>
+    {{/if}}
+    <form {{action "create" on="submit"}}>
+        <div class="form-group">
+            {{input value=name type="text" class="form-control input-lg" placeholder="Party Name"}}
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block btn-lg" {{bind-attr disabled="creating"}}>Create Party</button>
+    </form>
+</div>
