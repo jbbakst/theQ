@@ -1,0 +1,20 @@
+<div class="tab-bar">
+    <div class="tab queue">
+        {{#link-to "queue"}}
+            <span class="glyphicon glyphicon-align-justify"></span>
+            Queue
+        {{/link-to}}
+    </div>
+    <div class="tab current-party">
+        {{#link-to "party" currentPartyId}}
+            <span class="glyphicon glyphicon-home"></span>
+            Current Party
+        {{/link-to}}
+    </div>
+    <div class="tab now-playing">
+        {{#link-to "now-playing"}}
+            <span class="glyphicon glyphicon-music"></span>
+            Now Playing
+        {{/link-to}}
+    </div>
+</div>

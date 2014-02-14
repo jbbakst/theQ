@@ -1,3 +1,9 @@
-<p>{{model.name}}</p>
-<p>{{model.numPeople}}</p>
-<button class="btn btn-info" {{action "joinParty"}}>Join Party</button>
+<div {{bind-attr class="party currentParty:has-tab-bar"}}>
+    <p>{{model.name}}</p>
+    <p>{{model.numPeople}}</p>
+    {{#unless currentParty}}<button class="btn btn-info" {{action "joinParty" model}}>Join Party</button>{{/unless}}
+</div>
+
+{{#if currentParty}}
+    {{render "tab-bar"}}
+{{/if}}
