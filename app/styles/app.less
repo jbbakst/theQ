@@ -16,9 +16,8 @@ nav.header {
   height: @navbar-height;
   text-align: center;
   line-height: @navbar-height;
-  font-size: 32px;
+  font-size: 26px;
   font-family: 'Bowlby One';
-  letter-spacing: 2px;
   .back {
     line-height: @navbar-height;
     position: absolute;
@@ -44,6 +43,9 @@ nav.header {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
   .title {
@@ -87,7 +89,7 @@ nav.header {
           margin: auto 20px auto 0;
           height: @navbar-height;
           .number {
-            padding-left: 20px;
+            min-width: 35px;
           }
         }
       }
@@ -126,6 +128,7 @@ nav.header {
   .song-list {
     list-style: none;
     padding: 0;
+    margin: 0;
     li {
       height: @navbar-height;
       border-bottom: 1px solid black;
@@ -147,6 +150,58 @@ nav.header {
         font-size: 18px;
         margin-right: 15px;
       }
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.has-tab-bar {
+  padding-bottom: @navbar-height;
+  .song-image {
+    width: 80%;
+    margin: 25px 10%;
+    height: auto;
+  }
+}
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: @navbar-height;
+  border-top: 1px solid black;
+  background-color: @midnight-blue;
+  color: @font-purple;
+  .box-shadow(0 0 10px 0 #333);
+  .tab {
+    display: inline-block;
+    text-align: center;
+    width: 32%;
+    padding-top: 9px;
+    height: 100%;
+    border-right: 1px solid #444;
+    a {
+      width: 100%;
+      height: 100%;
+      display: block;
+      span {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 3px;
+      }
+      &:hover {
+        text-decoration: none;
+        color: @font-purple;
+      }
+    }
+    &.current-party {
+      width: 33%
+    }
+    &:last-child {
+      border-right: none;
     }
   }
 }

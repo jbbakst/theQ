@@ -12,8 +12,6 @@ App.Router.map ->
   this.resource 'queue'
   this.resource 'new-song'
   this.resource 'now-playing'
-  this.resource 'current-party'
-
 
 
 
@@ -41,12 +39,12 @@ App.NewPartyRoute = Ember.Route.extend
 
 App.PartyRoute = Ember.Route.extend
   model: (params)->
-    parties.findBy 'id', params['party_id']
+    parties.findBy 'id', parseInt params['party_id']
 
   setupController: (controller, model)->
     controller.set 'controllers.application.title', model.name
-    controller.set 'controllers.application.back', yes
-    controller.set 'controllers.application.leave', no
+#    controller.set 'controllers.application.back', yes
+#    controller.set 'controllers.application.leave', no
     controller.set 'controllers.application.newParty', no
     controller.set 'controllers.application.newSong', no
     controller.set 'content', model
@@ -71,6 +69,14 @@ App.NewSongRoute = Ember.Route.extend
     controller.set 'controllers.application.newParty', no
     controller.set 'controllers.application.newSong', no
 
+App.NowPlayingRoute = Ember.Route.extend
+  setupController: (controller)->
+    controller.set 'controllers.application.title', 'Now Playing'
+    controller.set 'controllers.application.back', no
+    controller.set 'controllers.application.leave', yes
+    controller.set 'controllers.application.newParty', no
+    controller.set 'controllers.application.newSong', yes
+
 
 
 
@@ -92,8 +98,21 @@ App.PartiesController = Ember.Controller.extend
 App.PartyController = Ember.Controller.extend
   needs: ['application']
 
+  currentParty: (->
+    current = this.get('controllers.application.party')
+    if current?
+      this.set 'controllers.application.back', no
+      this.set 'controllers.application.leave', yes
+      return yes
+    else
+      this.set 'controllers.application.back', yes
+      this.set 'controllers.application.leave', no
+      return no
+  ).property('controllers.application.party')
+
   actions:
-    joinParty: ->
+    joinParty: (party)->
+      this.set 'controllers.application.party', party
       this.transitionToRoute '/queue'
 
 App.QueueController = Ember.Controller.extend
@@ -104,6 +123,16 @@ App.NewPartyController = Ember.Controller.extend
 
 App.NewSongController = Ember.Controller.extend
   needs: ['application']
+
+App.NowPlayingController = Ember.Controller.extend
+  needs: ['application']
+
+App.TabBarController = Ember.Controller.extend
+  needs: ['application']
+
+  currentPartyId: (->
+    return this.get('controllers.application.party').id
+  ).property('controllers.application.party')
 
 
 
@@ -230,7 +259,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 2,
@@ -238,7 +267,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 3,
@@ -246,7 +275,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 4,
@@ -254,7 +283,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 5,
@@ -262,7 +291,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 6,
@@ -270,7 +299,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 7,
@@ -278,7 +307,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 8,
@@ -286,7 +315,7 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     },
     {
       "id": 9,
@@ -294,6 +323,6 @@ songs = [
       "artist": 'Pitbull',
       "album": 'Meltdown',
       "score": 55,
-      "img": "http://www.musicboxmix.net/wp-content/uploads/2013/12/Pitbull-Ft-Keha-Timber.jpg"
+      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     }
   ]
