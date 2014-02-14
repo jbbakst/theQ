@@ -159,9 +159,10 @@ App.NewSongController = Ember.Controller.extend
 
       $.post('/addSong',
         name: this.get('name')
-      ).then =>
-        this.set('adding', false)
-        this.transitionToRoute '/home'
+      ).then (res)=>
+        this.set 'adding', false
+        this.set 'controllers.application.party', res['party']
+        this.transitionToRoute 'queue'
       , =>
         this.set('adding', false)
         this.set('error', true)
