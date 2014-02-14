@@ -1,6 +1,12 @@
 var express = require('express');
 var port = process.env.PORT || 5000;
 var app = express();
+
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(app.router);
+});
+
 var queue = require("./dist/public/queue.json");
 var parties = require("./dist/public/parties.json");
 app.use(express.static(__dirname + '/dist'));
@@ -37,28 +43,6 @@ function newParty(req, res){
 	console.log("User clicked add Party")
 
 	parties.parties.push();
-}
-
-/*Adds the party to party.json
-*
-*/
-
-function partyToData(req, res){
-	var newParty = {
-		"id": 5,
-		"name": req.query.name,
-		"location": {
-			"x": 124.5875,
-			"y": 825.9827
-		},
-		"numPeople": 80, 
-		"numSongs": 40,
-		"currSongID": "kh6k6g"
-	}
-
-	console.log(newParty);
-
-	queue.push(newParty); 
 }
 
 //app.get('/new', addParty);
