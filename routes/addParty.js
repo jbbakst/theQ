@@ -1,7 +1,7 @@
 var parties = require("../dist/public/parties.json");
 
-
 exports.addParty = function(req, res){
+
 	var newParty = {
 		"id": 5,
 		"name": req.body.name,
@@ -14,9 +14,7 @@ exports.addParty = function(req, res){
 		"currSongID": "kh6k6g"
 	}
 
-	console.log(newParty);
-
 	parties.push(newParty);
 
-	res.send({ status: 'SUCCESS' , party:newParty}); 
+	res.send({ status: 'SUCCESS' , party: newParty });
 }

@@ -19,7 +19,9 @@ App.Router.map ->
 
 App.PartiesRoute = Ember.Route.extend
   model: ->
-    parties
+    Ember.$.getJSON('/allParties').then (data)->
+      App.parties = data
+      return data
 
   setupController: (controller, model)->
     controller.set 'controllers.application.title', 'THE Q'
@@ -39,7 +41,7 @@ App.NewPartyRoute = Ember.Route.extend
 
 App.PartyRoute = Ember.Route.extend
   model: (params)->
-    parties.findBy 'id', parseInt params['party_id']
+    App.parties.findBy 'id', parseInt params['party_id']
 
   setupController: (controller, model)->
     controller.set 'controllers.application.title', model.name
@@ -55,7 +57,9 @@ App.PartyRoute = Ember.Route.extend
 
 App.QueueRoute = Ember.Route.extend
   model: ->
-    songs
+    Ember.$.getJSON('/allSongs').then (data)->
+      App.songs = data
+      return data
 
   setupController: (controller, model)->
     controller.set 'controllers.application.title', 'QUEUE'
@@ -93,8 +97,8 @@ App.ApplicationController = Ember.Controller.extend
       window.history.back()
 
     leave: ->
-      this.set 'party', undefined
       this.transitionToRoute '/'
+      this.set 'party', undefined
 
 App.PartiesController = Ember.Controller.extend
   needs: ['application']
@@ -120,8 +124,8 @@ App.PartyController = Ember.Controller.extend
       this.transitionToRoute '/queue'
 
     leaveParty: ->
-      this.set 'controllers.application.party', undefined
       this.transitionToRoute '/'
+      this.set 'controllers.application.party', undefined
 
 App.QueueController = Ember.Controller.extend
   needs: ['application']
@@ -160,6 +164,8 @@ App.NewSongController = Ember.Controller.extend
 
       $.post('/addSong',
         name: this.get('name')
+        artist: this.get('artist')
+        album: this.get('album')
       ).then (res)=>
         this.set 'adding', false
         this.transitionToRoute 'queue'
@@ -174,7 +180,11 @@ App.TabBarController = Ember.Controller.extend
   needs: ['application']
 
   currentPartyId: (->
-    return this.get('controllers.application.party').id
+    currentParty = this.get('controllers.application.party')
+    if currentParty?
+      return currentParty.id
+    else
+      return -1
   ).property('controllers.application.party')
 
 
@@ -188,7 +198,7 @@ Handlebars.registerHelper 'partyIndex', (options)->
 
 
 
-
+###
 
 parties = [
     {
@@ -369,3 +379,4 @@ songs = [
       "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
     }
   ]
+###

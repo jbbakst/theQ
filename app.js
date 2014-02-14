@@ -12,38 +12,14 @@ var parties = require("./dist/public/parties.json");
 app.use(express.static(__dirname + '/dist'));
 app.listen(port);
 
-
-/*
-*I am not sure if any of the blow shit woorks, Saraf
-*if you could take a look at this and help me out. 
-*
-*/
+var allParties = require('./routes/allParties');
+var allSongs = require('./routes/allSongs');
 
 var addParty = require('./routes/addParty');
+var addSong = require('./routes/addSong');
+
+app.get('/allParties', allParties.getParties);
+app.get('/allSongs', allSongs.getSongs);
 
 app.post('/addParty', addParty.addParty);
-
-/* Adds song imput the othe queue.json)
-*
-*/ 
-function songToData(req, res) {
-	var newSong = {'name' : req.query.title,
-		'artist' : req.query.artist,
-		'album' : req.query.album,
-		'score' : 1,
-		'img' : 'http://lorempixel.com/500/500/people'}
-	console.log(newSong);
-	queue.push(newSong); 
-}
-
-/*Pair with the other function. this needs some work. 
-*
-*/
-function newParty(req, res){
-	console.log("User clicked add Party")
-
-	parties.parties.push();
-}
-
-//app.get('/new', addParty);
-//app.get('/', addSong);
+app.post('/addSong', addSong.addSong);
