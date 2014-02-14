@@ -43,11 +43,15 @@ App.PartyRoute = Ember.Route.extend
 
   setupController: (controller, model)->
     controller.set 'controllers.application.title', model.name
-#    controller.set 'controllers.application.back', yes
-#    controller.set 'controllers.application.leave', no
     controller.set 'controllers.application.newParty', no
     controller.set 'controllers.application.newSong', no
     controller.set 'content', model
+    if controller.get('controllers.application.party')?
+      controller.set 'controllers.application.back', no
+      controller.set 'controllers.application.leave', yes
+    else
+      controller.set 'controllers.application.back', yes
+      controller.set 'controllers.application.leave', no
 
 App.QueueRoute = Ember.Route.extend
   model: ->
