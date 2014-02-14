@@ -11,6 +11,8 @@ App.Router.map ->
   this.resource 'new-party'
   this.resource 'queue'
   this.resource 'new-song'
+  this.resource 'now-playing'
+  this.resource 'current-party'
 
 
 
