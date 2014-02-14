@@ -1,8 +1,8 @@
 var express = require('express');
 var port = process.env.PORT || 5000;
 var app = express();
-var queue = require("/queue.json");
-var parties = require("/parties.json");
+var queue = require("./dist/public/queue.json");
+var parties = require("./dist/public/parties.json");
 app.use(express.static(__dirname + '/dist'));
 app.listen(port);
 
@@ -13,6 +13,9 @@ app.listen(port);
 *
 */
 
+var addParty = require('./routes/addParty');
+
+app.post('/addParty', addParty.addParty);
 
 /* Adds song imput the othe queue.json)
 *
@@ -30,9 +33,10 @@ function songToData(req, res) {
 /*Pair with the other function. this needs some work. 
 *
 */
-function newParty(){
+function newParty(req, res){
 	console.log("User clicked add Party")
-	$.post("/parties", {""}, )
+
+	parties.parties.push();
 }
 
 /*Adds the party to party.json
@@ -57,5 +61,5 @@ function partyToData(req, res){
 	queue.push(newParty); 
 }
 
-app.get('/new', addParty);
-app.get('/', addSong);
+//app.get('/new', addParty);
+//app.get('/', addSong);
