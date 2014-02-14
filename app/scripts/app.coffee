@@ -139,7 +139,9 @@ App.NewPartyController = Ember.Controller.extend
 
       $.post('/addParty',
         name: this.get('name')
-      ).then =>
+      ).then (res)=>
+        console.log('here now')
+        console.log(res)
         this.set('creating', false)
         this.transitionToRoute '/home'
       , =>
