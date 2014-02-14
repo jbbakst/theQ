@@ -140,10 +140,9 @@ App.NewPartyController = Ember.Controller.extend
       $.post('/addParty',
         name: this.get('name')
       ).then (res)=>
-        console.log('here now')
-        console.log(res)
         this.set('creating', false)
-        this.transitionToRoute '/home'
+        this.set 'controllers.application.party', res['party']
+        this.transitionToRoute 'queue'
       , =>
         this.set('creating', false)
         this.set('error', true)
@@ -163,7 +162,6 @@ App.NewSongController = Ember.Controller.extend
         name: this.get('name')
       ).then (res)=>
         this.set 'adding', false
-        this.set 'controllers.application.party', res['party']
         this.transitionToRoute 'queue'
       , =>
         this.set('adding', false)
