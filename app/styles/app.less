@@ -20,8 +20,10 @@ nav.header {
   font-family: 'Bowlby One';
   letter-spacing: 2px;
   .back {
-    margin-left: 15px;
     line-height: @navbar-height;
+    position: absolute;
+    top: 0;
+    left: 15px;
     .glyphicon {
       color: @font-purple;
       font-size: 24px;
@@ -30,9 +32,28 @@ nav.header {
       cursor: pointer;
     }
   }
+  .leave {
+    font-size: 14px;
+    line-height: 14px;
+    font-family: Helvetica;
+    letter-spacing: 0;
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    span {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+  .title {
+    display: inline;
+  }
   .new {
-    margin-right: 15px;
     line-height: @navbar-height;
+    position: absolute;
+    top: 0;
+    right: 15px;
     .glyphicon {
       color: @font-purple;
       font-size: 24px;
@@ -60,18 +81,11 @@ nav.header {
           margin: 0 0 0 20px;
           line-height: @navbar-height;
           display: inline;
-//          text-overflow: ellipsis;
-//          white-space: nowrap;
-//          overflow: hidden;
         }
         .info {
           text-align: right;
           margin: auto 20px auto 0;
           height: @navbar-height;
-//          display: inline-block;
-//          white-space: nowrap;
-//          position: absolute;
-//          right: 0;
           .number {
             padding-left: 20px;
           }
@@ -105,38 +119,34 @@ nav.header {
     #party8 {
       background-color: #D6E5F8;
     }
+  }
+}
 
-//    border-top: 1px solid @midnight-blue;
-//    height: @navbar-height;
-//    margin: 0px 10px;
-//    a {
-//      position: relative;
-//      height: 100%;
-//      width: 100%;
-//      color: @font-purple;
-//      display: block;
-//      padding-left: 10px;
-//      &:hover {
-//        text-decoration: none;
-//      }
-//      h3 {
-//        width: 65%;
-//        display: inline;
-//        line-height: @navbar-height;
-//      }
-//      .info {
-//        width: 35%;
-//        padding: 12px 20px 12px 0;
-//        text-align: right;
-//        .numPeople {
-//          display: block;
-//        }
-//        .number {
-//          display: inline-block;
-//          width: 30px;
-//          margin-left: 3px;
-//        }
-//      }
-//    }
+.queue {
+  .song-list {
+    list-style: none;
+    padding: 0;
+    li {
+      height: @navbar-height;
+      border-bottom: 1px solid black;
+      background-color: #5893D3;
+      .album-art {
+        height: 50px;
+        width: 50px;
+        margin: 7px 10px 0 15px;
+      }
+      .info {
+        margin-top: 8px;
+        .name, .artist, .album {
+          line-height: 16px;
+          display: block;
+        }
+      }
+      .score {
+        line-height: @navbar-height;
+        font-size: 18px;
+        margin-right: 15px;
+      }
+    }
   }
 }

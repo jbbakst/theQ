@@ -1,0 +1,17 @@
+<div class="queue">
+    <ul class="song-list">
+        {{#each model}}
+            <li>
+                <img class="album-art pull-left" {{bind-attr src=img}} />
+                <div class="info pull-left">
+                    <span class="name">{{name}}</span>
+                    <span class="artist">{{artist}}</span>
+                    <span class="album">{{album}}</span>
+                </div>
+                <div class="score pull-right">
+                    {{score}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</div>
