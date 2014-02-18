@@ -1,12 +1,12 @@
 <div {{bind-attr class=":party currentParty:has-tab-bar"}}>
     <img class="map" src="../public/map.png" />
     <div class="info">
-        <div>Number of partiers: {{model.numPeople}}</div>
-        <div>Number of songs in Queue: {{model.numSongs}}</div>
+        <div>Number of partiers: {{numPeople}}</div>
+        <div>Number of songs in Queue: {{numSongs}}</div>
     </div>
     <div class="button">
         {{#if currentParty}}
-            <button class="btn btn-danger" {{action "leaveParty" model}}>Leave Party</button>
+            <button class="btn btn-danger" {{action "leaveParty"}}>Leave Party</button>
         {{else}}
             <button class="btn btn-info" {{action "joinParty" model}}>Join Party</button>
         {{/if}}

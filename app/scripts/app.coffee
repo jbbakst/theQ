@@ -49,7 +49,6 @@ App.PartyRoute = Ember.Route.extend
       properties.leave = no
     applicationController.setProperties properties
 
-
   model: (params)->
     App.parties.findBy 'id', parseInt params['party_id']
 
@@ -93,8 +92,6 @@ App.NowPlayingRoute = Ember.Route.extend
 
 
 App.ApplicationController = Ember.Controller.extend
-  title: 'THE Q'
-
   actions:
     back: ->
       window.history.back()
@@ -107,27 +104,17 @@ App.PartyController = Ember.Controller.extend
   needs: ['application']
 
   currentParty: (->
-    applicationController = this.get 'controllers.application'
-    if applicationController.party?
-      applicationController.setProperties
-        back: no
-        leave: yes
-      return yes
-    else
-      applicationController.setProperties
-        back: yes
-        leave: no
-      return no
+    return this.get 'controllers.application.party'
   ).property 'controllers.application.party'
 
   actions:
     joinParty: (party)->
-      this.set 'controllers.application.party', party
       this.transitionToRoute '/queue'
+      this.set 'controllers.application.party', party
 
     leaveParty: ->
-      this.transitionToRoute '/'
       this.set 'controllers.application.party', undefined
+      this.transitionToRoute '/'
 
 App.NewPartyController = Ember.Controller.extend
   needs: ['application']
