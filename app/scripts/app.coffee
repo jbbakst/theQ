@@ -1,10 +1,5 @@
 App = Ember.Application.create {}
 
-
-
-
-
-
 App.Router.map ->
   this.resource 'parties', { path: '/'}
   this.resource 'party', { path: 'party/:party_id' }
@@ -18,72 +13,81 @@ App.Router.map ->
 
 
 App.PartiesRoute = Ember.Route.extend
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', 'THE Q'
+    applicationController.set 'back', no
+    applicationController.set 'leave', no
+    applicationController.set 'newParty', yes
+    applicationController.set 'newSong', no
+
   model: ->
     Ember.$.getJSON('/allParties').then (data)->
       App.parties = data
+      console.log data
       return data
 
-  setupController: (controller, model)->
-    controller.set 'controllers.application.title', 'THE Q'
-    controller.set 'controllers.application.back', no
-    controller.set 'controllers.application.leave', no
-    controller.set 'controllers.application.newParty', yes
-    controller.set 'controllers.application.newSong', no
-    controller.set 'content', model
-
 App.NewPartyRoute = Ember.Route.extend
-  setupController: (controller)->
-    controller.set 'controllers.application.title', 'New Party'
-    controller.set 'controllers.application.back', yes
-    controller.set 'controllers.application.leave', no
-    controller.set 'controllers.application.newParty', no
-    controller.set 'controllers.application.newSong', no
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', 'New Party'
+    applicationController.set 'back', yes
+    applicationController.set 'leave', no
+    applicationController.set 'newParty', no
+    applicationController.set 'newSong', no
 
 App.PartyRoute = Ember.Route.extend
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'back', no
+    applicationController.set 'leave', no
+    applicationController.set 'newParty', no
+    applicationController.set 'newSong', no
+    if applicationController.get('party')?
+      applicationController.set 'back', no
+      applicationController.set 'leave', yes
+    else
+      applicationController.set 'back', yes
+      applicationController.set 'leave', no
+
   model: (params)->
     App.parties.findBy 'id', parseInt params['party_id']
 
-  setupController: (controller, model)->
-    controller.set 'controllers.application.title', model.name
-    controller.set 'controllers.application.newParty', no
-    controller.set 'controllers.application.newSong', no
-    controller.set 'content', model
-    if controller.get('controllers.application.party')?
-      controller.set 'controllers.application.back', no
-      controller.set 'controllers.application.leave', yes
-    else
-      controller.set 'controllers.application.back', yes
-      controller.set 'controllers.application.leave', no
+  afterModel: (model)->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', model.name
 
 App.QueueRoute = Ember.Route.extend
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', 'QUEUE'
+    applicationController.set 'back', no
+    applicationController.set 'leave', yes
+    applicationController.set 'newParty', no
+    applicationController.set 'newSong', yes
+
   model: ->
     Ember.$.getJSON('/allSongs').then (data)->
       App.songs = data
       return data
 
-  setupController: (controller, model)->
-    controller.set 'controllers.application.title', 'QUEUE'
-    controller.set 'controllers.application.back', no
-    controller.set 'controllers.application.leave', yes
-    controller.set 'controllers.application.newParty', no
-    controller.set 'controllers.application.newSong', yes
-    controller.set 'content', model
-
 App.NewSongRoute = Ember.Route.extend
-  setupController: (controller)->
-    controller.set 'controllers.application.title', 'New Song'
-    controller.set 'controllers.application.back', yes
-    controller.set 'controllers.application.leave', no
-    controller.set 'controllers.application.newParty', no
-    controller.set 'controllers.application.newSong', no
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', 'New Song'
+    applicationController.set 'back', yes
+    applicationController.set 'leave', no
+    applicationController.set 'newParty', no
+    applicationController.set 'newSong', no
 
 App.NowPlayingRoute = Ember.Route.extend
-  setupController: (controller)->
-    controller.set 'controllers.application.title', 'Now Playing'
-    controller.set 'controllers.application.back', no
-    controller.set 'controllers.application.leave', yes
-    controller.set 'controllers.application.newParty', no
-    controller.set 'controllers.application.newSong', yes
+  beforeModel: ->
+    applicationController = this.controllerFor 'application'
+    applicationController.set 'title', 'Now Playing'
+    applicationController.set 'back', no
+    applicationController.set 'leave', yes
+    applicationController.set 'newParty', no
+    applicationController.set 'newSong', yes
 
 
 
@@ -100,14 +104,11 @@ App.ApplicationController = Ember.Controller.extend
       this.transitionToRoute '/'
       this.set 'party', undefined
 
-App.PartiesController = Ember.Controller.extend
-  needs: ['application']
-
 App.PartyController = Ember.Controller.extend
   needs: ['application']
 
   currentParty: (->
-    current = this.get('controllers.application.party')
+    current = this.get 'controllers.application.party'
     if current?
       this.set 'controllers.application.back', no
       this.set 'controllers.application.leave', yes
@@ -116,7 +117,7 @@ App.PartyController = Ember.Controller.extend
       this.set 'controllers.application.back', yes
       this.set 'controllers.application.leave', no
       return no
-  ).property('controllers.application.party')
+  ).property 'controllers.application.party'
 
   actions:
     joinParty: (party)->
@@ -126,9 +127,6 @@ App.PartyController = Ember.Controller.extend
     leaveParty: ->
       this.transitionToRoute '/'
       this.set 'controllers.application.party', undefined
-
-App.QueueController = Ember.Controller.extend
-  needs: ['application']
 
 App.NewPartyController = Ember.Controller.extend
   needs: ['application']
@@ -142,14 +140,14 @@ App.NewPartyController = Ember.Controller.extend
       this.set 'creating', true
 
       $.post('/addParty',
-        name: this.get('name')
+        name: this.get 'name'
       ).then (res)=>
-        this.set('creating', false)
+        this.set 'creating', false
         this.set 'controllers.application.party', res['party']
         this.transitionToRoute 'queue'
       , =>
-        this.set('creating', false)
-        this.set('error', true)
+        this.set 'creating', false
+        this.set 'error', true
 
 App.NewSongController = Ember.Controller.extend
   needs: ['application']
@@ -163,29 +161,26 @@ App.NewSongController = Ember.Controller.extend
       this.set 'adding', true
 
       $.post('/addSong',
-        name: this.get('name')
-        artist: this.get('artist')
-        album: this.get('album')
-      ).then (res)=>
+        name: this.get 'name'
+        artist: this.get 'artist'
+        album: this.get 'album'
+      ).then =>
         this.set 'adding', false
         this.transitionToRoute 'queue'
       , =>
-        this.set('adding', false)
-        this.set('error', true)
-
-App.NowPlayingController = Ember.Controller.extend
-  needs: ['application']
+        this.set 'adding', false
+        this.set 'error', true
 
 App.TabBarController = Ember.Controller.extend
   needs: ['application']
 
   currentPartyId: (->
-    currentParty = this.get('controllers.application.party')
+    currentParty = this.get 'controllers.application.party'
     if currentParty?
       return currentParty.id
     else
       return -1
-  ).property('controllers.application.party')
+  ).property 'controllers.application.party'
 
 
 
@@ -194,189 +189,3 @@ App.TabBarController = Ember.Controller.extend
 Handlebars.registerHelper 'partyIndex', (options)->
   index = options.data.view.contentIndex
   return 'party' + index
-
-
-
-
-###
-
-parties = [
-    {
-      "id": 1,
-      "name": "Kappa Sig",
-      "location": {
-        "x": 123.5875,
-        "y": 826.9827
-      },
-      "numPeople": 325,
-      "numSongs": 56,
-      "currSongID": "kjh4h4"
-    },
-    {
-      "id": 2,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 3,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 4,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 5,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 6,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 7,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 8,
-      "name": "SAE",
-      "location": {
-        "x": 124.5875,
-        "y": 825.9827
-      },
-      "numPeople": 13,
-      "numSongs": 4,
-      "currSongID": "kh6k6g"
-    },
-    {
-      "id": 9,
-      "name": "Theta Delt",
-      "location": {
-        "x": 121.5875,
-        "y": 824.9827
-      },
-      "numPeople": 3,
-      "numSongs": 123,
-      "currSongID": "gv5g5v"
-    }
-  ]
-
-
-
-
-songs = [
-    {
-      "id": 1,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 2,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 3,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 4,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 5,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 6,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 7,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 8,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    },
-    {
-      "id": 9,
-      "name": "Timber ft. Ke$ha",
-      "artist": 'Pitbull',
-      "album": 'Meltdown',
-      "score": 55,
-      "img": "http://upload.wikimedia.org/wikipedia/en/8/8d/AnimalKesha.jpg"
-    }
-  ]
-###
