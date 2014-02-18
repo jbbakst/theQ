@@ -22,9 +22,7 @@ App.PartiesRoute = Ember.Route.extend
       newSong: no
 
   model: ->
-    Ember.$.getJSON('/allParties').then (data)->
-      App.parties = data
-      return data
+    Ember.$.getJSON('/allParties')
 
 App.NewPartyRoute = Ember.Route.extend
   beforeModel: ->
@@ -50,7 +48,8 @@ App.PartyRoute = Ember.Route.extend
     applicationController.setProperties properties
 
   model: (params)->
-    App.parties.findBy 'id', parseInt params['party_id']
+    Ember.$.getJSON('/allParties').then (parties)->
+      parties.findBy 'id', parseInt params['party_id']
 
   afterModel: (model)->
     this.controllerFor('application').set 'title', model.name
