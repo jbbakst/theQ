@@ -14,57 +14,56 @@ App.Router.map ->
 
 App.PartiesRoute = Ember.Route.extend
   beforeModel: ->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', 'THE Q'
-    applicationController.set 'back', no
-    applicationController.set 'leave', no
-    applicationController.set 'newParty', yes
-    applicationController.set 'newSong', no
+    this.controllerFor('application').setProperties
+      title: 'THE Q'
+      back: no
+      leave: no
+      newParty: yes
+      newSong: no
 
   model: ->
     Ember.$.getJSON('/allParties').then (data)->
       App.parties = data
-      console.log data
       return data
 
 App.NewPartyRoute = Ember.Route.extend
   beforeModel: ->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', 'New Party'
-    applicationController.set 'back', yes
-    applicationController.set 'leave', no
-    applicationController.set 'newParty', no
-    applicationController.set 'newSong', no
+    this.controllerFor('application').setProperties
+    title: 'New Party'
+    back: yes
+    leave: no
+    newParty: no
+    newSong: no
 
 App.PartyRoute = Ember.Route.extend
   beforeModel: ->
     applicationController = this.controllerFor 'application'
-    applicationController.set 'back', no
-    applicationController.set 'leave', no
-    applicationController.set 'newParty', no
-    applicationController.set 'newSong', no
+    properties =
+      newParty: no
+      newSong: no
     if applicationController.get('party')?
-      applicationController.set 'back', no
-      applicationController.set 'leave', yes
+      properties.back = no
+      properties.leave = yes
     else
-      applicationController.set 'back', yes
-      applicationController.set 'leave', no
+      properties.back = yes
+      properties.leave = no
+    applicationController.setProperties properties
+
 
   model: (params)->
     App.parties.findBy 'id', parseInt params['party_id']
 
   afterModel: (model)->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', model.name
+    this.controllerFor('application').set 'title', model.name
 
 App.QueueRoute = Ember.Route.extend
   beforeModel: ->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', 'QUEUE'
-    applicationController.set 'back', no
-    applicationController.set 'leave', yes
-    applicationController.set 'newParty', no
-    applicationController.set 'newSong', yes
+    this.controllerFor('application').setProperties
+      title: 'QUEUE'
+      back: no
+      leave: yes
+      newParty: no
+      newSong: yes
 
   model: ->
     Ember.$.getJSON('/allSongs').then (data)->
@@ -73,21 +72,21 @@ App.QueueRoute = Ember.Route.extend
 
 App.NewSongRoute = Ember.Route.extend
   beforeModel: ->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', 'New Song'
-    applicationController.set 'back', yes
-    applicationController.set 'leave', no
-    applicationController.set 'newParty', no
-    applicationController.set 'newSong', no
+    this.controllerFor('application').setProperties
+      title: 'New Song'
+      back: yes
+      leave: no
+      newParty: no
+      newSong: no
 
 App.NowPlayingRoute = Ember.Route.extend
   beforeModel: ->
-    applicationController = this.controllerFor 'application'
-    applicationController.set 'title', 'Now Playing'
-    applicationController.set 'back', no
-    applicationController.set 'leave', yes
-    applicationController.set 'newParty', no
-    applicationController.set 'newSong', yes
+    this.controllerFor('application').setProperties
+      title: 'Now Playing'
+      back: no
+      leave: yes
+      newParty: no
+      newSong: yes
 
 
 
@@ -108,14 +107,16 @@ App.PartyController = Ember.Controller.extend
   needs: ['application']
 
   currentParty: (->
-    current = this.get 'controllers.application.party'
-    if current?
-      this.set 'controllers.application.back', no
-      this.set 'controllers.application.leave', yes
+    applicationController = this.get 'controllers.application'
+    if applicationController.party?
+      applicationController.setProperties
+        back: no
+        leave: yes
       return yes
     else
-      this.set 'controllers.application.back', yes
-      this.set 'controllers.application.leave', no
+      applicationController.setProperties
+        back: yes
+        leave: no
       return no
   ).property 'controllers.application.party'
 
@@ -136,8 +137,9 @@ App.NewPartyController = Ember.Controller.extend
 
   actions:
     create: ->
-      this.set 'error', false
-      this.set 'creating', true
+      this.setProperties
+        error: false
+        creating: true
 
       $.post('/addParty',
         name: this.get 'name'
@@ -146,8 +148,9 @@ App.NewPartyController = Ember.Controller.extend
         this.set 'controllers.application.party', res['party']
         this.transitionToRoute 'queue'
       , =>
-        this.set 'creating', false
-        this.set 'error', true
+        this.setProperties
+          creating: false
+          error: true
 
 App.NewSongController = Ember.Controller.extend
   needs: ['application']
@@ -157,8 +160,9 @@ App.NewSongController = Ember.Controller.extend
 
   actions:
     create: ->
-      this.set 'error', false
-      this.set 'adding', true
+      this.setProperties
+        error: false
+        adding: true
 
       $.post('/addSong',
         name: this.get 'name'
@@ -168,8 +172,9 @@ App.NewSongController = Ember.Controller.extend
         this.set 'adding', false
         this.transitionToRoute 'queue'
       , =>
-        this.set 'adding', false
-        this.set 'error', true
+        this.setProperties
+          adding: false
+          error: true
 
 App.TabBarController = Ember.Controller.extend
   needs: ['application']
