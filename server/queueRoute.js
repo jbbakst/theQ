@@ -6,7 +6,6 @@ exports.getQueue = function(req, res) {
     models.Party
         .find()
         .exec(function(data) {
-            console.log(data);
             res.send({queue: data});
         });
 }

@@ -50,6 +50,8 @@ App.PartyRoute = Ember.Route.extend
     applicationController.setProperties properties
 
   model: (params)->
+    currentParty = this.controllerFor('application').get 'party'
+    if currentParty? then return currentParty
     Ember.$.getJSON('/allParties').then (parties)->
       parties.findBy 'id', parseInt params['party_id']
 
