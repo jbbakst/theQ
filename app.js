@@ -31,14 +31,10 @@ var queue = require("./queue.json");
 app.get('/allSongs', function(req, res) {
     res.send(queue);
 });
+
 app.post('/addSong', function(req, res) {
-    var newSong = {
-        'name' : req.body.name,
-        'artist' : req.body.artist,
-        'album' : req.body.album,
-        'score' : 1,
-        'img' : 'http://lorempixel.com/500/500/people'
-    }
-    queue.push(newSong);
-    res.send({ status: 'SUCCESS' , song: newSong });
+    var search = req.search;
+
+    
+    res.send(200);
 });
