@@ -66,6 +66,7 @@ App.QueueRoute = Ember.Route.extend
 
   model: ->
     Ember.$.getJSON('/allSongs').then (data)->
+      console.log data
       App.songs = data
       return data
 
