@@ -69,7 +69,6 @@ App.QueueRoute = Ember.Route.extend
     Ember.$.getJSON('/allSongs').then (data)->
       console.log '>>>>>', data
       data = if data.queue? then data.queue else []
-      App.songs = data
       return data
 
 App.NewSongRoute = Ember.Route.extend
@@ -199,6 +198,7 @@ App.TabBarController = Ember.Controller.extend
 
   currentPartyId: (->
     currentParty = this.get 'controllers.application.party'
+    console.log '^^^^^^^^', currentParty
     if currentParty?
       return currentParty.id
     else
