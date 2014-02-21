@@ -4,7 +4,7 @@ var currID = 0;
 
 exports.getQueue = function(req, res) {
     models.Party
-        .find({}, function(err, data) {
+        .find({}, function(data) {
             console.log('>>>>>>>>', err);
             console.log('>>>>>>>>', data);
             console.log('>>>>>>>>');
@@ -30,7 +30,7 @@ exports.upvote = function(req, res) {
         .update({ $inc: 1 })
         .exec(function() {
             models.Party
-                .find({}, function(err, data) {
+                .find({}, function(data) {
                     var queue = data.toObject.queue;
                     queue.sort(queueSortFn);
                     res.send(queue);
