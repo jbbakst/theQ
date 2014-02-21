@@ -5,6 +5,7 @@ var currID = 0;
 exports.getQueue = function(req, res) {
     models.Party
         .find({}, function(data) {
+            console.log(data);
             res.send(data);
         });
 }

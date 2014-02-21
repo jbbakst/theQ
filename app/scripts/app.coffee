@@ -66,7 +66,7 @@ App.QueueRoute = Ember.Route.extend
 
   model: ->
     Ember.$.getJSON('/allSongs').then (data)->
-      console.log data
+      console.log '>>>>>', data
       App.songs = data
       return data
 
@@ -145,6 +145,7 @@ App.NewPartyController = Ember.Controller.extend
       $.post('/addParty',
         name: this.get 'name'
       ).then (res)=>
+        console.log res
         this.set 'creating', false
         this.set 'controllers.application.party', res
         this.transitionToRoute 'queue'
