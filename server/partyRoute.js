@@ -2,7 +2,8 @@ var models = require('./models');
 
 exports.getParties = function(req, res) {
     models.Party
-        .find({}, function(parties) {
+        .find()
+        .exec(function(err, parties) {
             res.send({parties: parties});
         });
 }
