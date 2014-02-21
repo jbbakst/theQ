@@ -17,7 +17,7 @@ exports.addSong = function(req, res) {
         'score' : 1
     });
     newSong.save(function() {
-        res.send(newSong);
+        res.send(newSong.toObject());
     });
 }
 

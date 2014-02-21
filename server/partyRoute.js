@@ -3,7 +3,8 @@ var models = require('./models');
 exports.getParties = function(req, res) {
     models.Party
         .find({}, function(parties) {
-            res.send(parties);
+            console.log(parties.toObject());
+            res.send(parties.toObject());
         });
 }
 
@@ -17,6 +18,6 @@ exports.addParty = function(req, res) {
         "queue": []
     });
     newParty.save(function() {
-        res.send(newParty);
+        res.send(newParty.toObject());
     });
 }
