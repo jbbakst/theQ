@@ -22,8 +22,9 @@ App.PartiesRoute = Ember.Route.extend
       newSong: no
 
   model: ->
-    []
-#    Ember.$.getJSON('/allParties').then (data)-> console.log data
+    Ember.$.getJSON('/allParties').then (data)->
+      console.log data
+      return data
 
 App.NewPartyRoute = Ember.Route.extend
   beforeModel: ->
