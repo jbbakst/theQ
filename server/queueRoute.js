@@ -5,9 +5,7 @@ var currID = 0;
 exports.getQueue = function(req, res) {
     models.Party
         .find({}, function(data) {
-            var queue = data.toObject.queue;
-            queue.sort(queueSortFn);
-            res.send(queue);
+            res.send(data);
         });
 }
 
@@ -17,7 +15,9 @@ exports.addSong = function(req, res) {
         'score' : 1
     });
     newSong.save(function() {
-        res.send(newSong.toObject());
+        console.log(newSong);
+        console.log(newSong.toObject());
+        res.send(newSong);
     });
 }
 
@@ -28,9 +28,7 @@ exports.upvote = function(req, res) {
         .exec(function() {
             models.Party
                 .find({}, function(data) {
-                    var queue = data.toObject.queue;
-                    queue.sort(queueSortFn);
-                    res.send(queue);
+                    res.send(data);
                 });
         });
 }
