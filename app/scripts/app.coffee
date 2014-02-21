@@ -115,6 +115,19 @@ App.PartyController = Ember.Controller.extend
       this.set 'controllers.application.party', undefined
       this.transitionToRoute '/'
 
+App.QueueController = Ember.ArrayController.extend
+  actions:
+    upvote: (song)->
+      console.log song
+      $.post('/upvote',
+        id: song.id
+      ).then (res)=>
+        console.log res
+        this.set 'model', res
+      , (err)->
+        console.log err
+
+
 App.NewPartyController = Ember.Controller.extend
   needs: ['application']
 
@@ -131,7 +144,7 @@ App.NewPartyController = Ember.Controller.extend
         name: this.get 'name'
       ).then (res)=>
         this.set 'creating', false
-        this.set 'controllers.application.party', res['party']
+        this.set 'controllers.application.party', res
         this.transitionToRoute 'queue'
       , =>
         this.setProperties

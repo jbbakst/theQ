@@ -8,9 +8,9 @@
                     <span class="artist">{{artist}}</span>
                     <span class="album">{{album}}</span>
                 </div>
-                <div class="score pull-right">
-                    {{score}}
-                </div>
+                <button class="btn btn-success pull-right" {{action "upvote" this}}>
+                    Upvote: {{score}}
+                </button>
             </li>
         {{/each}}
     </ul>
