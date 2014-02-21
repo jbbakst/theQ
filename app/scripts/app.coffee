@@ -65,8 +65,10 @@ App.QueueRoute = Ember.Route.extend
       newSong: yes
 
   model: ->
+    console.log 'HEREH'
     Ember.$.getJSON('/allSongs').then (data)->
       console.log '>>>>>', data
+      data = if data.queue? then data.queue else []
       App.songs = data
       return data
 
