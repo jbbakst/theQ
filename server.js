@@ -5,6 +5,12 @@ app.use(express.static(__dirname + '/dist'));
 var port = process.env.PORT || 5000;
 app.listen(port);
 
+var mongoose = require('mongoose');
+var local_database_name = 'lab7';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
+
 var partyRoute = require('./server/partyRoute');
 var queueRoute = require('./server/queueRoute');
 
