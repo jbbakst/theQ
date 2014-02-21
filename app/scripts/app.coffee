@@ -23,8 +23,7 @@ App.PartiesRoute = Ember.Route.extend
 
   model: ->
     Ember.$.getJSON('/allParties').then (data)->
-      console.log data
-      return data
+      if not data.parties? then return [] else return data.parties
 
 App.NewPartyRoute = Ember.Route.extend
   beforeModel: ->
