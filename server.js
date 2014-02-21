@@ -5,8 +5,8 @@ app.use(express.static(__dirname + '/dist'));
 var port = process.env.PORT || 5000;
 app.listen(port);
 
-var partyRoute = require('server/partyRoute');
-var queueRoute = require('server/queueRoute');
+var partyRoute = require('./server/partyRoute');
+var queueRoute = require('./server/queueRoute');
 
 app.get('/allSongs', queueRoute.getQueue);
 app.post('/addSong', queueRoute.addSong);

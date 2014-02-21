@@ -3,19 +3,20 @@
     {{#if error}}
         <div class="alert alert-danger">Error adding song. Please try again.</div>
     {{/if}}
-    <form {{action "create" on="submit"}}>
-        <div class="form-group">
-            {{input value=name type="text" class="form-control input-lg" placeholder="Song Name"}}
-        </div>
+    {{#if result}}
+        <p>Gooooood</p>
+    {{else}}
+        <form {{action "search" on="submit"}}>
+            <div class="form-group">
+                {{input value=search type="text" class="form-control input-lg" placeholder="Search for Song"}}
+            </div>
 
-        <div class="form-group">
-            {{input value=artist type="text" class="form-control input-lg" placeholder="Artist Name"}}
-        </div>
+            <div class="form-group">
+                {{view Ember.Select 
+                    content=searchOptions value=selectedSearchOption class="form-control input-lg"}}
+            </div>
 
-        <div class="form-group">
-            {{input value=album type="text" class="form-control input-lg" placeholder="Album Name"}}
-        </div>
-
-        <button type="submit" class="btn btn-success btn-block btn-lg" {{bind-attr disabled="adding"}}>Add Song</button>
-    </form>
+            <button type="submit" class="btn btn-success btn-block btn-lg" {{bind-attr disabled="adding"}}>Search</button>
+        </form>
+    {{/if}}
 </div>

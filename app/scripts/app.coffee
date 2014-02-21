@@ -156,24 +156,38 @@ App.NewSongController = Ember.Controller.extend
 
   adding: false
   error: false
+  selectedSearchOption: null
+  searchOptions: ['Artists', 'Albums', 'Tracks']
+
 
   actions:
-    create: ->
-      this.setProperties
-        error: false
-        adding: true
+    search: ->
+      search_type = this.get 'selectedSearchOption'
+      if search_type == 'Artists'
+        $.get('http://ws.spotify.com/search/1/artist.json?q=' + this.get 'search').then (res) =>
+          this.set 'result', res
+      else if search_type == 'Albums'
+        $.get('http://ws.spotify.com/search/1/album.json?q=' + this.get 'search').then (res) =>
+          this.set 'result', res
+      else if search_type == 'Tracks'
+        $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
+          this.set 'result', res
 
-      $.post('/addSong',
-        name: this.get 'name'
-        artist: this.get 'artist'
-        album: this.get 'album'
-      ).then =>
-        this.set 'adding', false
-        this.transitionToRoute 'queue'
-      , =>
-        this.setProperties
-          adding: false
-          error: true
+    #$.get()
+
+      #this.setProperties
+      #  error: false
+      #  adding: true
+
+      #$.post('/addSong',
+      #  search: this.get 'search'
+      #).then =>
+      #  this.set 'adding', false
+      #  this.transitionToRoute 'queue'
+      #, =>
+      #  this.setProperties
+      #    adding: false
+      #    error: true
 
 App.TabBarController = Ember.Controller.extend
   needs: ['application']
