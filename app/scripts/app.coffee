@@ -23,6 +23,7 @@ App.PartiesRoute = Ember.Route.extend
 
   model: ->
     Ember.$.getJSON('/allParties').then (data)->
+      console.log 'get parties list: ', data
       if not data.parties? then return [] else return data.parties
 
 App.NewPartyRoute = Ember.Route.extend
@@ -198,8 +199,8 @@ App.TabBarController = Ember.Controller.extend
 
   currentPartyId: (->
     currentParty = this.get 'controllers.application.party'
-    console.log '^^^^^^^^', currentParty
     if currentParty?
+      console.log '^^^^^^^^', currentParty.id
       return currentParty.id
     else
       return -1
