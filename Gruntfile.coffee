@@ -128,10 +128,12 @@ module.exports = (grunt)->
 
   grunt.registerTask 'default', 'server'
 
-  grunt.registerTask 'heroku:', [
+  grunt.registerTask 'build', [
     'clean',
     'coffee:dist',
     'emberTemplates',
     'less:dist',
     'copy'
   ]
+
+  grunt.registerTask 'heroku:production', 'build'
