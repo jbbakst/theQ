@@ -9,17 +9,6 @@ var mongoose = require('mongoose');
 var database_uri = process.env.MONGOLAB_URI
 mongoose.connect(database_uri);
 
-var models = require('./server/models');
-var newParty = new models.Party({
-    "id": -1,
-    "name": 'Test',
-    "numPeople": 1,
-    "numSongs": 0,
-    "currSongID": 0,
-    "queue": []
-});
-newParty.save();
-
 var partyRoute = require('./server/partyRoute');
 var queueRoute = require('./server/queueRoute');
 
