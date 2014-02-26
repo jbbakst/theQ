@@ -3,7 +3,7 @@ var models = require('./models');
 exports.getParties = function(req, res) {
     models.Party
         .find()
-        .sort(['_id', -1])
+        .sort({'_id': -1})
         .limit(9)
         .exec(function(err, parties) {
             res.send({parties: parties});
