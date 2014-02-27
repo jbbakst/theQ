@@ -4,6 +4,10 @@
     {{/if}}
     {{#if result}}
         <p>Gooooood</p>
+        {{#each tracks}}
+            console.log(name);
+            <p>{{name}}</p>
+        {{/each}}
     {{else}}
         <form {{action "search" on="submit"}}>
             <div class="form-group">
