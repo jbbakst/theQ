@@ -5,8 +5,7 @@
     {{#if result}}
         <p>Gooooood</p>
         {{#each tracks}}
-            console.log(name);
-            <p>{{name}}</p>
+            <h4>{{name}}</h4>
         {{/each}}
     {{else}}
         <form {{action "search" on="submit"}}>
