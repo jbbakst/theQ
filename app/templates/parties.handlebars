@@ -1,6 +1,6 @@
 <div class="parties">
     <ul class="party-list">
-        {{#each controller}}
+        {{#each result.tracks}}
             <li id="{{partyIndex}}">
                 {{#link-to 'party' this class="party pull-left"}}
                     <h4>{{name}}</h4>
