@@ -3,9 +3,19 @@
         <div class="alert alert-danger">Error adding song. Please try again.</div>
     {{/if}}
     {{#if result}}
+
+        <ul class="song-list">
+
         {{#each result.tracks}}
-            <h4>{{name}}</h4>
+            <li>
+                <button class="btn btn-success pull-left" {{action "addSong" this}}>
+                    {{name}}
+                </button>
+            </li>
+        {{else}}
+            <h4 style="text-align: center">No Songs Found!</h4>
         {{/each}}
+        </ul>
     {{else}}
         <form {{action "search" on="submit"}}>
             <div class="form-group">
