@@ -169,35 +169,19 @@ App.NewSongController = Ember.Controller.extend
       $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
           console.log(res);
           this.set 'result', res
-      <!--search_type = this.get 'selectedSearchOption'
-      if search_type == 'Artists'
-        $.get('http://ws.spotify.com/search/1/artist.json?q=' + this.get 'search').then (res) =>
-          console.log(res);
-          this.set 'result', res
-      else if search_type == 'Albums'
-        $.get('http://ws.spotify.com/search/1/album.json?q=' + this.get 'search').then (res) =>
-          console.log(res);
-          this.set 'result', res
-      else if search_type == 'Tracks'
-        $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
-          console.log(res);
-          this.set 'result', res-->
-
-    #$.get()
-
-      #this.setProperties
-      #  error: false
-      #  adding: true
-
-      #$.post('/addSong',
-      #  search: this.get 'search'
-      #).then =>
-      #  this.set 'adding', false
-      #  this.transitionToRoute 'queue'
-      #, =>
-      #  this.setProperties
-      #    adding: false
-      #    error: true
+      # search_type = this.get 'selectedSearchOption'
+      # if search_type == 'Artists'
+      #   $.get('http://ws.spotify.com/search/1/artist.json?q=' + this.get 'search').then (res) =>
+      #     console.log(res);
+      #     this.set 'result', res
+      # else if search_type == 'Albums'
+      #   $.get('http://ws.spotify.com/search/1/album.json?q=' + this.get 'search').then (res) =>
+      #     console.log(res);
+      #     this.set 'result', res
+      # else if search_type == 'Tracks'
+      #   $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
+      #     console.log(res);
+      #     this.set 'result', res
 
 App.TabBarController = Ember.Controller.extend
   needs: ['application']
