@@ -167,8 +167,8 @@ App.NewSongController = Ember.Controller.extend
   actions:
     search: ->
       $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
-          console.log(res);
-          this.set 'result', res
+        console.log(res);
+        this.set 'result', res
       # search_type = this.get 'selectedSearchOption'
       # if search_type == 'Artists'
       #   $.get('http://ws.spotify.com/search/1/artist.json?q=' + this.get 'search').then (res) =>
