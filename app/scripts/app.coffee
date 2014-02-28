@@ -166,7 +166,10 @@ App.NewSongController = Ember.Controller.extend
 
   actions:
     search: ->
-      search_type = this.get 'selectedSearchOption'
+      $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
+          console.log(res);
+          this.set 'result', res
+      <!--search_type = this.get 'selectedSearchOption'
       if search_type == 'Artists'
         $.get('http://ws.spotify.com/search/1/artist.json?q=' + this.get 'search').then (res) =>
           console.log(res);
@@ -178,7 +181,7 @@ App.NewSongController = Ember.Controller.extend
       else if search_type == 'Tracks'
         $.get('http://ws.spotify.com/search/1/track.json?q=' + this.get 'search').then (res) =>
           console.log(res);
-          this.set 'result', res
+          this.set 'result', res-->
 
     #$.get()
 
