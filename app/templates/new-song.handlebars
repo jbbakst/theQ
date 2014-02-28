@@ -9,13 +9,13 @@
     {{else}}
         <form {{action "search" on="submit"}}>
             <div class="form-group">
-                {{input value=search type="text" class="form-control input-lg" placeholder="Search for Song, Artist, or Album"}}
+                {{input value=search type="text" class="form-control input-lg" placeholder="Search for Song"}}
             </div>
 
-            <!--<div class="form-group">
+            <div class="form-group">
                 {{view Ember.Select 
                     content=searchOptions value=selectedSearchOption class="form-control input-lg"}}
-            </div>-->
+            </div>
 
             <button type="submit" class="btn btn-success btn-block btn-lg" {{bind-attr disabled="adding"}}>Search</button>
         </form>
